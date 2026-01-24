@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuenta Regresiva - Viaje a Cuba</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,55 +13,39 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #87CEEB;
-            background-image: url('https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 30px 20px;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Overlay sutil para mejorar legibilidad */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            pointer-events: none;
-        }
-
-        /* Contenedor principal */
+        /* Contenedor principal - SIN transparencia */
         .main-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
-            padding: 200px 40px 30px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            max-width: 900px;
+            background: transparent;
+            border-radius: 20px;
+            padding: 0;
+            max-width: 880px;
             width: 100%;
             position: relative;
             z-index: 10;
-            border: 3px solid #000000;
-            animation: fadeIn 1s ease-out;
-            max-height: 95vh;
-            overflow-y: auto;
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -69,14 +53,28 @@
             }
         }
 
-        /* Bandera decorativa superior */
-        .flag-decoration {
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 150px;
+        /* Header con bandera cubana */
+        .header-section {
+            background: rgba(0, 0, 0, 0.4) !important;
+            padding: 48px 40px 20px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(0px);
+        }
+
+        .header-section::before {
+            display: none;
+        }
+
+        /* Bandera cubana decorativa */
+        .cuban-flag {
+            position: relative;
+            top: 0;
+            right: 0;
+            margin: 0 auto 24px auto;
+            width: 180px;
+            height: 90px;
             background: repeating-linear-gradient(
                 to bottom,
                 #002590 0%,
@@ -90,13 +88,13 @@
                 #002590 80%,
                 #002590 100%
             );
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            z-index: 2;
         }
 
-        /* Triángulo rojo de la bandera cubana */
-        .flag-decoration::before {
+        .cuban-flag::before {
             content: '';
             position: absolute;
             left: 0;
@@ -104,78 +102,116 @@
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 75px 0 75px 120px;
-            border-color: transparent transparent transparent #CC0D0D;
+            border-width: 45px 0 45px 72px;
+            border-color: transparent transparent transparent #DC143C;
         }
 
-        /* Estrella blanca en el triángulo */
-        .flag-decoration::after {
+        .cuban-flag::after {
             content: '★';
             position: absolute;
-            left: 30px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 35px;
+            font-size: 28px;
             z-index: 1;
+            font-weight: 900;
         }
 
-        /* Título principal */
-        .title-section {
+        .header-section .header-message {
             text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .title-section h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2em;
-            font-weight: 700;
-            color: #002590;
-            margin-bottom: 10px;
-            text-transform: none;
-            letter-spacing: 1px;
-        }
-
-        .title-section .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            font-weight: 300;
-            font-style: normal;
-            margin-top: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .title-section .destination {
-            font-size: 2.2em;
-            color: #002590;
-            font-weight: 400;
             margin: 15px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-section .header-message p {
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-weight: 400;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .header-section .badge {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #DC143C;
+            color: white;
+            border-radius: 0;
+            font-size: 0.95em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 6px 0 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px; /* Espacio entre título y badge */
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-section .destination {
+            font-size: 2.56em;
+            font-weight: 600;
+            color: #FFD700;
+            margin: 20px 0;
             font-family: 'Playfair Display', serif;
             font-style: italic;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-section .subtitle {
+            font-size: 1.12em;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contenido principal */
+        .content-section {
+            padding: 0 40px 20px 40px;
+            background: rgba(0, 0, 0, 0.4) !important;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Sección del contador */
         .countdown-section {
-            margin: 15px 0;
+            margin: 0 0 32px 0; /* El padding del header y content ya manejan el espacio */
         }
 
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 15px;
+            gap: 20px;
         }
 
         .countdown-item {
-            background: linear-gradient(135deg, #002590 0%, #0033a0 100%);
-            border-radius: 15px;
-            padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 24px 16px;
             text-align: center;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 37, 144, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
         .countdown-item::before {
@@ -185,7 +221,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s;
         }
 
@@ -194,208 +230,259 @@
         }
 
         .countdown-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 37, 144, 0.4);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: #002590;
         }
 
         .countdown-number {
-            font-size: 3.5em;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            font-weight: 800;
             line-height: 1;
-            margin-bottom: 10px;
-            color: #FFD700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 12px;
+            color: #DC143C;
+            text-shadow: none;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .countdown-label {
-            font-size: 1em;
+            font-size: 0.85em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 400;
-            opacity: 0.9;
+            letter-spacing: 3px;
+            font-weight: 700;
+            color: #002590;
         }
 
-        /* Contador alternativo (texto completo) */
+        /* Contador alternativo */
         #contador {
-            font-size: 2em;
-            font-weight: 600;
-            color: #002590;
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(0, 37, 144, 0.05) 0%, rgba(204, 13, 13, 0.05) 100%);
-            border-radius: 15px;
-            border: 2px solid #002590;
-            margin: 30px 0;
-            line-height: 1.8;
             display: none;
         }
 
         /* Fecha destacada */
         .date-section {
             text-align: center;
-            margin: 15px 0;
-            padding: 15px;
-            background: linear-gradient(135deg, rgba(0, 37, 144, 0.05) 0%, rgba(204, 13, 13, 0.05) 100%);
-            border-radius: 15px;
-            border: 1px solid rgba(0, 37, 144, 0.15);
+            margin: 40px 0;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(0, 37, 144, 0.8) 0%, rgba(0, 51, 160, 0.8) 100%);
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 37, 144, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .date-section::before {
+            content: '';
+            position: absolute;
+            top: -300%;
+            left: -300%;
+            width: 700%;
+            height: 700%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .date-section .date-label {
-            font-size: 0.95em;
-            color: #666;
-            font-weight: 400;
+            font-size: 0.72em;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            font-size: 0.9em;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .date-section .date-value {
             font-size: 2em;
-            font-weight: 400;
-            color: #002590;
+            font-weight: 700;
             font-family: 'Playfair Display', serif;
+            color: #FFD700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Mensaje motivacional */
         .message-section {
             text-align: center;
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(0, 37, 144, 0.03);
-            border-radius: 15px;
-            border-left: 3px solid #002590;
+            margin-top: 40px;
+            padding: 16px 32px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #DC143C;
+            border-right: 5px solid #002590;
         }
 
         .message-section p {
-            font-size: 1.2em;
-            color: #555;
-            font-style: normal;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        .message-section .highlight {
-            color: #002590;
+            font-size: 1.12em;
+            color: #111111;
+            line-height: 1.9;
             font-weight: 600;
+            font-style: italic;
         }
 
-        /* Separador decorativo */
-        .divider {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #002590, transparent);
-            margin: 15px auto;
+        /* Copyright */
+        .copyright-section {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px 0 10px 0;
         }
+
+        .copyright-section p {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            margin: 0;
+        }
+
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .main-container {
-                padding: 40px 30px;
+                max-width: 100%;
             }
 
-            .title-section h1 {
-                font-size: 2.2em;
+            .header-section {
+                padding: 40px 24px 56px 24px;
             }
 
-            .title-section .destination {
-                font-size: 1.5em;
-                flex-direction: column;
-                gap: 10px;
+            .cuban-flag {
+                top: 16px;
+                right: 24px;
+                width: 112px;
+                height: 56px;
+            }
+
+            .cuban-flag::before {
+                border-width: 28px 0 28px 45px;
+            }
+
+            .cuban-flag::after {
+                left: 11px;
+                font-size: 18px;
+            }
+
+            .header-section h1 {
+                font-size: 3.5em;
+            }
+
+            .header-section .destination {
+                font-size: 1.92em;
+            }
+
+            .content-section {
+                padding: 32px 24px;
             }
 
             .countdown-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                gap: 16px;
             }
 
             .countdown-number {
-                font-size: 2.5em;
-            }
-
-            .date-section .date-value {
-                font-size: 1.6em;
-            }
-
-            .message-section p {
-                font-size: 1.1em;
-            }
-
-            .flag-decoration {
-                width: 250px;
-                height: 120px;
-            }
-
-            .flag-decoration::before {
-                border-width: 60px 0 60px 100px;
-            }
-
-            .flag-decoration::after {
-                left: 25px;
-                font-size: 28px;
+                font-size: 3.2em;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
+            .header-section {
+                padding: 32px 16px 48px 16px;
+            }
+
+            .cuban-flag {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 16px auto;
+            }
+
+            .header-section h1 {
+                font-size: 2.24em;
+            }
+
+            .header-section .destination {
+                font-size: 1.52em;
+            }
+
+            .content-section {
+                padding: 24px 16px;
+            }
+
             .countdown-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .countdown-number {
+                font-size: 3.5em;
+            }
+
+            .date-section .date-value {
+                font-size: 1.44em;
+            }
+
+            .message-section p {
+                font-size: 0.96em;
             }
         }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <div class="flag-decoration"></div>
-        
-        <div class="title-section">
-            <h1>Cuenta Regresiva</h1>
-            <div class="destination">Viaje a Cuba</div>
-            <p class="subtitle">Falta poco para que Marianita viaje a la Perla del Caribe</p>
+        <div class="header-section">
+            <div class="cuban-flag"></div>
+            <h1>¡Nos vamos a Cuba!</h1>
+            <div class="badge">Cuenta Regresiva</div>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="countdown-section">
-            <div class="countdown-grid" id="countdown-grid">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="dias">0</div>
-                    <div class="countdown-label">Días</div>
+        <div class="content-section">
+            <div class="countdown-section">
+                <div class="countdown-grid" id="countdown-grid">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="dias">0</div>
+                        <div class="countdown-label">Días</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="horas">0</div>
+                        <div class="countdown-label">Horas</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutos">0</div>
+                        <div class="countdown-label">Minutos</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="segundos">0</div>
+                        <div class="countdown-label">Segundos</div>
+                    </div>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="horas">0</div>
-                    <div class="countdown-label">Horas</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutos">0</div>
-                    <div class="countdown-label">Minutos</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="segundos">0</div>
-                    <div class="countdown-label">Segundos</div>
-                </div>
+                <div id="contador"></div>
             </div>
-            <div id="contador"></div>
-        </div>
 
-        <div class="date-section">
-            <div class="date-label">Fecha del Viaje</div>
-            <div class="date-value">24 de Febrero, 2026</div>
-        </div>
+            <div class="date-section">
+                <div class="date-label">Fecha del Viaje</div>
+                <div class="date-value">24 de Febrero, 2026</div>
+            </div>
 
-        <div class="message-section">
-            <p>
-                Prepárate para descubrir las <span class="highlight">playas de Varadero</span>, 
-                la <span class="highlight">música cubana</span>, la <span class="highlight">arquitectura colonial</span> 
-                y la <span class="highlight">calidez del pueblo cubano</span>. 
-                La aventura está por comenzar.
-            </p>
+            <div class="copyright-section">
+                <p>Design by Marianita © copyright 2026</p>
+            </div>
         </div>
     </div>
 
     <script>
         function actualizarContador() {
-            const fechaObjetivo = new Date('2026-02-24T00:00:00');
+            const fechaObjetivo = new Date('2026-02-24T04:05:00');
             const ahora = new Date();
             const diferencia = fechaObjetivo - ahora;
             
@@ -416,9 +503,9 @@
                     `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
             } else {
                 document.getElementById('countdown-grid').innerHTML = 
-                    '<div class="countdown-item" style="grid-column: 1 / -1; padding: 50px;">' +
-                    '<div style="font-size: 2em; font-weight: 700; margin-bottom: 15px;">¡Ya llegó el día!</div>' +
-                    '<div style="font-size: 1.3em; opacity: 0.9;">¡Buen viaje, Marianita!</div>' +
+                    '<div class="countdown-item" style="grid-column: 1 / -1; padding: 40px;">' +
+                    '<div style="font-size: 2.4em; font-weight: 800; margin-bottom: 12px; color: #FFD700;">¡Ya llegó el día!</div>' +
+                    '<div style="font-size: 1.2em; opacity: 0.9; color: white;">¡Buen viaje, Marianita!</div>' +
                     '</div>';
                 document.getElementById('contador').innerHTML = '¡Ya llegó el día! ¡Buen viaje, Marianita!';
             }
