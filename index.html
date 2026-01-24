@@ -471,7 +471,7 @@
 
             <div class="date-section">
                 <div class="date-label">Fecha del Viaje</div>
-                <div class="date-value">24 de Febrero, 2026 - 4:05 AM</div>
+                <div class="date-value">24 de Febrero, 2026 - 4:05 AM (Hora de Cuba)</div>
             </div>
 
             <div class="copyright-section">
@@ -482,7 +482,8 @@
 
     <script>
         function actualizarContador() {
-            const fechaObjetivo = new Date('2026-02-24T04:05:00');
+            // Fecha objetivo: 24 de Febrero, 2026 a las 4:05 AM hora de Cuba (UTC-5)
+            const fechaObjetivo = new Date('2026-02-24T04:05:00-05:00');
             const ahora = new Date();
             const diferencia = fechaObjetivo - ahora;
             
