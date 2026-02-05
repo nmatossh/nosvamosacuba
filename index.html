@@ -347,6 +347,17 @@
             margin: 0;
         }
 
+        .copyright-section a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .copyright-section a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
 
         /* Responsive */
         @media (max-width: 968px) {
@@ -549,7 +560,7 @@
             </div>
 
             <div class="copyright-section">
-                <p>Design by Marianita © Copyright 2026</p>
+                <p>Design by <a href="https://instagram.com/marianitapia" target="_blank" rel="noopener noreferrer">@Marianita</a> © Copyright 2026</p>
             </div>
         </div>
     </div>
@@ -582,7 +593,7 @@
                     '<div style="font-size: 2.4em; font-weight: 800; margin-bottom: 12px; color: #FFD700;">¡Ya llegó el día!</div>' +
                     '<div style="font-size: 1.2em; opacity: 0.9; color: white;">¡Buen viaje, Marianita!</div>' +
                     '</div>';
-                document.getElementById('contador').innerHTML = '¡Ya llegó el día! ¡Buen viaje, Marianita!';
+                document.getElementById('contador').innerHTML = '¡Ya llegó el día! ¡Buen viaje, a todos!';
             }
         }
         
